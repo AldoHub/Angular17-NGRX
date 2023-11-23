@@ -1,0 +1,29 @@
+<form (ngSubmit)="addPost()" [formGroup]="postForm">
+
+    <h2>Create a new post.</h2>
+    <p>Fill the form to add a new post.</p>  
+
+    <div class="formcontrol">
+        <label for="title">Title</label>
+        <input type="text" formControlName="title" name="title"/>
+    
+        <div class="error" *ngIf="postForm.get('title')!.errors && 
+        postForm.get('title')!.hasError('required') && (postForm.get('title')!.dirty || postForm.get('title')!.touched)">
+            <span>Title Error</span>
+        </div>
+    </div>
+
+    <div class="formcontrol">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" formControlName="description"></textarea>
+    
+        <div class="error" *ngIf="postForm.get('description')!.errors && 
+        postForm.get('description')!.hasError('required') && (postForm.get('description')!.dirty || postForm.get('description')!.touched)" >
+          <span>Empty Content Error</span>
+      </div>
+
+    </div>
+
+
+    <input type="submit" [disabled]="!postForm.valid" value="Submit">
+</form>
